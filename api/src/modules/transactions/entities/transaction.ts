@@ -3,6 +3,6 @@ export interface ITransaction {
   typeId: number
   date: Date
   productId: number
-  value: number
+  valueInCents: number
   sellerId: number
 }

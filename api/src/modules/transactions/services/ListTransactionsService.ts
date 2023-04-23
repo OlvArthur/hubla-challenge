@@ -1,28 +1,25 @@
+import { IFindOneSellerByIdService } from "../../sellers/services/interfaces/IFindOneSellerByIdService"
 import { ITransaction } from "../entities/transaction"
 import { IListTransactionsRepository } from "../repositories/IListTransactionsRepository"
 import { IListTransactionsService } from "./interfaces/IListTransactionsService"
 
 
 class ListTransactionsService implements IListTransactionsService {
-  constructor(private transactionsRepository: IListTransactionsRepository) {}
+  constructor(
+    private transactionsRepository: IListTransactionsRepository,
+    private findOneSellerService: IFindOneSellerByIdService
+  ) {}
   
   public async execute(authenticatedSellerId: number): Promise<ITransaction[]> {
-    // TODO find seller and use his/her access level info
-    const seller = {
-      id: 4,
-      name: 'Jhon Doe',
-      is_affiliated_to: null,
-      is_admin: true,
-      affiliates: [] as { id: number}[]
-    }
+    const seller = await this.findOneSellerService.execute(authenticatedSellerId)
 
-    if (seller.is_admin) return this.transactionsRepository.listAllTransactions()
+    if (seller.isAdmin) return this.transactionsRepository.listAllTransactions()
 
-    const sellerIsAffiliated = seller.is_affiliated_to !== null 
+    const sellerIsAffiliated = Boolean(seller.isAffiliatedTo) 
     if (sellerIsAffiliated) return this.transactionsRepository.listAffiliateTransactions(seller.id)
 
     const creatorAffiliatesIds = seller.affiliates.map(affiliate => affiliate.id)
-    const creatorTransactions = this.transactionsRepository.listCreatorTransactions(
+    const creatorTransactions = await this.transactionsRepository.listCreatorTransactions(
       seller.id,
       creatorAffiliatesIds
     )

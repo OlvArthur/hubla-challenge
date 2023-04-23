@@ -8,7 +8,7 @@ class TransactionsRepository implements IListTransactionsRepository {
     productId: 2,
     sellerId: 4,
     typeId: 2,
-    value: 1234
+    valueInCents: 1234
   }]
 
 

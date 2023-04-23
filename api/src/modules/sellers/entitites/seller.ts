@@ -1,12 +1,8 @@
-import { ITransaction } from "../../transactions/entities/transaction"
+import { Seller, Transaction } from "../../../shared/infra/prisma/client"
 
-export interface ISeller {
-  id: number
-  name: string
-  isAdmin: Boolean
-  isAffiliatedTo?: number | null
-  creator?: ISeller
-  affiliates: ISeller[]
-  transactions: ITransaction[]
+export interface ISeller extends Seller {
+  creator?: Seller
+  affiliates: Seller[]
+  transactions: Transaction[]
 }
 

@@ -1,4 +1,4 @@
 # API
 api/dist
-api/dist/*
 api/src/shared/infra/prisma/client
+api/node_modules

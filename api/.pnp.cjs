@@ -32,6 +32,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/express", "npm:4.17.17"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.42"],\
             ["express", "npm:4.18.2"],\
+            ["express-async-errors", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:3.1.1"],\
             ["prisma", "npm:4.13.0"],\
             ["ts-node-dev", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:2.0.0"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=85af82"],\
@@ -963,6 +964,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/express", "npm:4.17.17"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.42"],\
             ["express", "npm:4.18.2"],\
+            ["express-async-errors", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:3.1.1"],\
             ["prisma", "npm:4.13.0"],\
             ["ts-node-dev", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:2.0.0"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=85af82"],\
@@ -1760,6 +1762,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["type-is", "npm:1.6.18"],\
             ["utils-merge", "npm:1.0.1"],\
             ["vary", "npm:1.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["express-async-errors", [\
+        ["npm:3.1.1", {\
+          "packageLocation": "./.yarn/cache/express-async-errors-npm-3.1.1-c0a6b1e552-3a2a6df8ea.zip/node_modules/express-async-errors/",\
+          "packageDependencies": [\
+            ["express-async-errors", "npm:3.1.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:3.1.1", {\
+          "packageLocation": "./.yarn/__virtual__/express-async-errors-virtual-9480fbcfd0/0/cache/express-async-errors-npm-3.1.1-c0a6b1e552-3a2a6df8ea.zip/node_modules/express-async-errors/",\
+          "packageDependencies": [\
+            ["express-async-errors", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:3.1.1"],\
+            ["@types/express", "npm:4.17.17"],\
+            ["express", "npm:4.18.2"]\
+          ],\
+          "packagePeers": [\
+            "@types/express",\
+            "express"\
           ],\
           "linkType": "HARD"\
         }]\

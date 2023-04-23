@@ -28,9 +28,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@prisma/client", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:4.13.0"],\
             ["@types/express", "npm:4.17.17"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.42"],\
             ["express", "npm:4.18.2"],\
+            ["prisma", "npm:4.13.0"],\
             ["ts-node-dev", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:2.0.0"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=85af82"]\
           ],\
@@ -144,6 +146,47 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@npmcli/move-file", "npm:2.0.1"],\
             ["mkdirp", "npm:1.0.4"],\
             ["rimraf", "npm:3.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@prisma/client", [\
+        ["npm:4.13.0", {\
+          "packageLocation": "./.yarn/unplugged/@prisma-client-virtual-0406f60305/node_modules/@prisma/client/",\
+          "packageDependencies": [\
+            ["@prisma/client", "npm:4.13.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:4.13.0", {\
+          "packageLocation": "./.yarn/unplugged/@prisma-client-virtual-0406f60305/node_modules/@prisma/client/",\
+          "packageDependencies": [\
+            ["@prisma/client", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:4.13.0"],\
+            ["@prisma/engines-version", "npm:4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a"],\
+            ["@types/prisma", null],\
+            ["prisma", "npm:4.13.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/prisma",\
+            "prisma"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@prisma/engines", [\
+        ["npm:4.13.0", {\
+          "packageLocation": "./.yarn/unplugged/@prisma-engines-npm-4.13.0-22f57d71d8/node_modules/@prisma/engines/",\
+          "packageDependencies": [\
+            ["@prisma/engines", "npm:4.13.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@prisma/engines-version", [\
+        ["npm:4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a", {\
+          "packageLocation": "./.yarn/cache/@prisma-engines-version-npm-4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a-416746f22a-cc583fe956.zip/node_modules/@prisma/engines-version/",\
+          "packageDependencies": [\
+            ["@prisma/engines-version", "npm:4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -631,9 +674,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["api", "workspace:."],\
+            ["@prisma/client", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:4.13.0"],\
             ["@types/express", "npm:4.17.17"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.42"],\
             ["express", "npm:4.18.2"],\
+            ["prisma", "npm:4.13.0"],\
             ["ts-node-dev", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:2.0.0"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=85af82"]\
           ],\
@@ -2334,6 +2379,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/picomatch-npm-2.3.1-c782cfd986-050c865ce8.zip/node_modules/picomatch/",\
           "packageDependencies": [\
             ["picomatch", "npm:2.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["prisma", [\
+        ["npm:4.13.0", {\
+          "packageLocation": "./.yarn/unplugged/prisma-npm-4.13.0-59037c45c5/node_modules/prisma/",\
+          "packageDependencies": [\
+            ["prisma", "npm:4.13.0"],\
+            ["@prisma/engines", "npm:4.13.0"]\
           ],\
           "linkType": "HARD"\
         }]\

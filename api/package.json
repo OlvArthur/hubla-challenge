@@ -2,15 +2,21 @@
   "name": "api",
   "packageManager": "yarn@3.5.0",
   "scripts": {
-    "dev:server": "ts-node-dev --inspect --ignore-watch node_modules ./src/shared/infra/express/server.ts"
+    "dev:server": "ts-node-dev --inspect --ignore-watch node_modules ./src/shared/infra/express/server.ts",
+    "db:migrate": "yarn pnpify prisma migrate dev"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@yarnpkg/pnpify": "^4.0.0-rc.42",
+    "prisma": "4.13.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@prisma/client": "4.13.0",
     "express": "^4.18.2"
+  },
+  "prisma": {
+    "schema": "./src/shared/infra/prisma/schema.prisma"
   }
 }

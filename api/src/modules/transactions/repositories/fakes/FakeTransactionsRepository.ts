@@ -1,4 +1,4 @@
-import { ICreateTransactionDTO } from "../../DTOs/ICreateTransactionDTO";
+import { ICreateTransactionDTO } from "../../DTOs";
 import { ITransaction } from "../../entities/transaction";
 import { ICreateManyTransactionsRepository } from "../ICreateManyTransactionsRepository";
 import { IListTransactionsRepository } from "../IListTransactionsRepository";

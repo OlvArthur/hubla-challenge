@@ -38,7 +38,7 @@ class FakeSellersRepository implements IFindManySellersRepository, IFindOneSelle
   ]
 
   async findByName(sellerName: string): Promise<ISeller | null> {
-    const foundSeller = this.sellers.find(seller => seller.name === sellerName)
+    const foundSeller = this.sellers.find(seller => seller.name.toLowerCase() === sellerName.toLowerCase())
 
     if(!foundSeller) return null
 
@@ -47,7 +47,7 @@ class FakeSellersRepository implements IFindManySellersRepository, IFindOneSelle
 
 
   async findByNames(sellerNames: string[]): Promise<ISeller[]> {
-    const foundSellers = this.sellers.filter(seller => sellerNames.includes(seller.name))
+    const foundSellers = this.sellers.filter(seller => sellerNames.includes(seller.name.toLowerCase()))
 
     return foundSellers
   }

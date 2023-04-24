@@ -1,8 +1,9 @@
 import { IFindOneSellerRepository } from "../../../repositories/IFindOneSellerRepository";
 import { Context, prisma as prismaClient } from "../../../../../shared/infra/prisma/ClientInstance";
 import { ISeller } from "../../../entitites/seller";
+import { IFindManySellersRepository } from "../../../repositories/IFindManySellersRepository";
 
-export default class SellersRepository implements IFindOneSellerRepository {
+export default class SellersRepository implements IFindOneSellerRepository, IFindManySellersRepository {
   prismaContext: Context
 
   constructor(ctx?: Context) {
@@ -23,6 +24,42 @@ export default class SellersRepository implements IFindOneSellerRepository {
     })
 
     return seller
+  }
+
+  async findByIds(sellerIds: number[]): Promise<ISeller[]> {
+    const { prisma } = this.prismaContext
+    
+    const sellers = await prisma.seller.findMany({
+      where: {
+        id: {
+          in: sellerIds
+        }
+      },
+      include: {
+        affiliates: true,
+        transactions: true
+      }
+    })
+
+    return sellers
+  }
+
+  async findByNames(sellerNames: string[]): Promise<ISeller[]> {
+    const { prisma } = this.prismaContext
+    
+    const sellers = await prisma.seller.findMany({
+      where: {
+        name: {
+          in: sellerNames
+        }
+      },
+      include: {
+        affiliates: true,
+        transactions: true
+      }
+    })
+
+    return sellers
   }
 
   public async findByName(name: string): Promise<ISeller | null> {

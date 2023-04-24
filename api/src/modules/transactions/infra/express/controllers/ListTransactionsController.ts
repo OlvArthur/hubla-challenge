@@ -7,7 +7,9 @@ class ListTransactionsController {
   constructor(private listTransactionsService: IListTransactionsService) {}
 
   async handle(httpRequest: HttpRequest) {
-    const transactions = await this.listTransactionsService.execute(2)
+    const { authenticatedSellerId } = httpRequest.user
+
+    const transactions = await this.listTransactionsService.execute(authenticatedSellerId)
     
     return success({ transactions })
   }

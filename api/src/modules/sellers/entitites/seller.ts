@@ -1,8 +1,11 @@
-import { Seller, Transaction } from "../../../shared/infra/prisma/client"
+import { Seller, Transaction, TransactionType } from "../../../shared/infra/prisma/client"
+
+type TransactionWithType = Transaction & { transactionType: TransactionType }
 
 export interface ISeller extends Seller {
   creator?: Seller
   affiliates: Seller[]
-  transactions: Transaction[]
+  transactions: TransactionWithType[]
+  balance?: number
 }
 

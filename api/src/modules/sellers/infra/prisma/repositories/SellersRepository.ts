@@ -3,6 +3,7 @@ import { Context, prisma as prismaClient } from "../../../../../shared/infra/pri
 import { ISeller } from "../../../entitites/seller";
 import { IFindManySellersRepository } from "../../../repositories/IFindManySellersRepository";
 
+import { computeBalance } from '../../../commons'
 export default class SellersRepository implements IFindOneSellerRepository, IFindManySellersRepository {
   prismaContext: Context
 
@@ -19,11 +20,15 @@ export default class SellersRepository implements IFindOneSellerRepository, IFin
       },
       include: {
         affiliates: true,
-        transactions: true
+        transactions: {
+          include: {
+            transactionType: true
+          }
+        }
       }
     })
 
-    return seller
+    return computeBalance(seller)
   }
 
   async findByIds(sellerIds: number[]): Promise<ISeller[]> {
@@ -37,7 +42,11 @@ export default class SellersRepository implements IFindOneSellerRepository, IFin
       },
       include: {
         affiliates: true,
-        transactions: true
+        transactions: {
+          include: {
+            transactionType: true
+          }
+        }
       }
     })
 
@@ -55,7 +64,11 @@ export default class SellersRepository implements IFindOneSellerRepository, IFin
       },
       include: {
         affiliates: true,
-        transactions: true
+        transactions: {
+          include: {
+            transactionType: true
+          }
+        }
       }
     })
 
@@ -71,11 +84,15 @@ export default class SellersRepository implements IFindOneSellerRepository, IFin
       },
       include: {
         affiliates: true,
-        transactions: true
+        transactions: {
+          include: {
+            transactionType: true
+          }
+        }
       }
     })
 
-    return seller
+    return computeBalance(seller)
   }
 
   public async findByEmail(email: string): Promise<ISeller | null> {
@@ -87,10 +104,15 @@ export default class SellersRepository implements IFindOneSellerRepository, IFin
       },
       include: {
         affiliates: true,
-        transactions: true
+        transactions: {
+          include: {
+            transactionType: true
+          }
+        }
       }
     })
+    
 
-    return seller
+    return computeBalance(seller)
   }
 }

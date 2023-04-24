@@ -3,13 +3,15 @@
   "packageManager": "yarn@3.5.0",
   "scripts": {
     "dev:server": "ts-node-dev --inspect --ignore-watch node_modules ./src/shared/infra/express/server.ts",
-    "db:migrate": "yarn pnpify prisma migrate dev",
+    "db:migrate": "yarn pnpify prisma migrate dev && yarn pnpify prisma db seed",
+    "db:reset": "yarn pnpify prisma migrate reset",
     "test": "vitest"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@yarnpkg/pnpify": "^4.0.0-rc.42",
     "prisma": "4.13.0",
+    "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4",
     "vite": "^4.3.1",
@@ -21,6 +23,7 @@
     "express-async-errors": "^3.1.1"
   },
   "prisma": {
-    "schema": "./src/shared/infra/prisma/schema.prisma"
+    "schema": "./src/shared/infra/prisma/schema.prisma",
+    "seed": "ts-node ./src/shared/infra/prisma/seed.ts"
   }
 }

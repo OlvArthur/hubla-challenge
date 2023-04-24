@@ -45,6 +45,9 @@ CREATE TABLE "TransactionType" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Product_description_key" ON "Product"("description");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Seller_name_key" ON "Seller"("name");
 
 -- CreateIndex

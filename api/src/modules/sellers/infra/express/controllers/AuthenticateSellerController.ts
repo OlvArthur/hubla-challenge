@@ -11,7 +11,11 @@ class AuthenticateSellerController implements BaseController {
 
     const { token, seller } = await this.authenticateSellerService.execute({ email, password })
 
-    const { password: sellerPassword, ...passwordlessSeller } = seller
+    const { password: sellerPassword, affiliates, ...passwordlessSeller } = seller
+
+    const passwordlessAffiliates = affiliates.map(({ password, ...rest }) => rest)
+
+    Object.assign(passwordlessSeller, { affiliates: passwordlessAffiliates })
 
     return success({ token, seller: passwordlessSeller })
   }

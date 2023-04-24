@@ -71,8 +71,10 @@ class CreateManyTransactionsService implements ICreateManyTransactionsService {
         )
       }
 
+      const { productDescription, sellerName, ...rest } = transactionDTO
+
       return {
-        ...transactionDTO,
+        ...rest,
         productId: transactionProduct.id,
         sellerId: transactionSeller.id
       }

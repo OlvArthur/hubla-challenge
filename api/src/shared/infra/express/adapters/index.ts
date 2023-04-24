@@ -9,7 +9,8 @@ export const adaptExpressRouter = (controller: BaseController): RequestHandler =
       body: req.body,
       headers: req.headers,
       params: req.params,
-      query: req.query
+      query: req.query,
+      user: req.user
     }
     const { statusCode, body } = await controller.handle(request)
     return res.status(statusCode).json(body)

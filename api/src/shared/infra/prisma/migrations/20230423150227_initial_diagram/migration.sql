@@ -15,6 +15,8 @@ CREATE TABLE "Product" (
 -- CreateTable
 CREATE TABLE "Seller" (
     "id" SERIAL NOT NULL,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "isAdmin" BOOLEAN NOT NULL DEFAULT false,
     "isAffiliatedTo" INTEGER,
@@ -46,6 +48,9 @@ CREATE TABLE "TransactionType" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Product_description_key" ON "Product"("description");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Seller_email_key" ON "Seller"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Seller_name_key" ON "Seller"("name");

@@ -95,8 +95,10 @@ const main = async (): Promise<void> => {
     },
     update: {},
     create: {
+      email: 'david.reis@hub.la',
       name: 'david reis',
       isAdmin: true,
+      password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
     }
   })
 
@@ -106,8 +108,10 @@ const main = async (): Promise<void> => {
     },
     update: {},
     create: {
+      email: 'arthur.oliveira@hub.la',
       name: 'arthur oliveira',
-      isAdmin: true
+      isAdmin: true,
+      password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6'
     }
   })
 
@@ -117,6 +121,8 @@ const main = async (): Promise<void> => {
     },
     update: {},
     create: {
+      email: 'jose.carlos@hub.la',
+      password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
       name: 'jose carlos',
     }
   })
@@ -127,6 +133,8 @@ const main = async (): Promise<void> => {
     },
     update: {},
     create: {
+      email: 'maria.candida@hub.la',
+      password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
       name: 'maria candida',
     }
   })
@@ -138,12 +146,16 @@ const main = async (): Promise<void> => {
     update: {},
     create: {
       name: 'thiago oliveira',
+      email: 'thiago.oliveira@hub.la',
+      password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
       creator: {
         connectOrCreate: {
           where: {
             name: 'jose carlos'
           },
           create: {
+            email: 'jose.carlos@hub.la',
+            password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
             name: 'jose carlos'
           }
         }
@@ -157,6 +169,8 @@ const main = async (): Promise<void> => {
     },
     update: {},
     create: {
+      email: 'eliana.nogueira@hub.la',
+      password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
       name: 'eliana nogueira',
     }
   })
@@ -167,6 +181,8 @@ const main = async (): Promise<void> => {
     },
     update: {},
     create: {
+      email: 'carlos.batista@hub.la',
+      password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
       name: 'carlos batista',
       creator: {
         connectOrCreate: {
@@ -174,6 +190,8 @@ const main = async (): Promise<void> => {
             name: 'eliana nogueira'
           },
           create: {
+            email: 'eliana.nogueira@hub.la',
+            password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
             name: 'eliana nogueira'
           }
         }
@@ -187,6 +205,8 @@ const main = async (): Promise<void> => {
     },
     update: {},
     create: {
+      email:  'carolina.machado@hub.la',
+      password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
       name: 'carolina machado',
       creator: {
         connectOrCreate: {
@@ -194,6 +214,8 @@ const main = async (): Promise<void> => {
             name: 'eliana nogueira'
           },
           create: {
+            email: 'eliana.nogueira@hub.la',
+            password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
             name: 'eliana nogueira'
           }
         }
@@ -207,6 +229,8 @@ const main = async (): Promise<void> => {
     },
     update: {},
     create: {
+      email: 'celso.de.melo@hub.la',
+      password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
       name: 'celso de melo',
       creator: {
         connectOrCreate: {
@@ -214,6 +238,8 @@ const main = async (): Promise<void> => {
             name: 'eliana nogueira'
           },
           create: {
+            email: 'eliana.nogueira@hub.la',
+            password: '$2a$13$Ccy1/Hj4iB0I/rOn/YKrn.rqt4ILEUpHwbaWTZpEEdNR5qbo7yXD6',
             name: 'eliana nogueira'
           }
         }

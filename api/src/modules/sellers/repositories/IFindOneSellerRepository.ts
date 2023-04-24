@@ -1,6 +1,7 @@
 import { ISeller } from "../entitites/seller";
 
 export interface IFindOneSellerRepository {
-  findById(sellerId: number): Promise<ISeller | null>
-  findByName(sellerName: string): Promise<ISeller | null>
+  findById(id: number): Promise<ISeller | null>
+  findByName(name: string): Promise<ISeller | null>
+  findByEmail(email: string): Promise<ISeller | null>
 }

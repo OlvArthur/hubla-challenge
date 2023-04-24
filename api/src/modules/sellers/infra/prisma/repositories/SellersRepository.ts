@@ -9,12 +9,12 @@ export default class SellersRepository implements IFindOneSellerRepository {
     this.prismaContext = ctx ?? { prisma: prismaClient }
   }
 
-  public async findById(sellerId: number): Promise<ISeller | null> {
+  public async findById(id: number): Promise<ISeller | null> {
     const { prisma } = this.prismaContext
 
     const seller = await prisma.seller.findUnique({
       where: {
-        id: sellerId
+        id,
       },
       include: {
         affiliates: true,
@@ -25,12 +25,28 @@ export default class SellersRepository implements IFindOneSellerRepository {
     return seller
   }
 
-  public async findByName(sellerName: string): Promise<ISeller | null> {
+  public async findByName(name: string): Promise<ISeller | null> {
     const { prisma } = this.prismaContext
 
     const seller = await prisma.seller.findUnique({
       where: {
-        name: sellerName
+        name
+      },
+      include: {
+        affiliates: true,
+        transactions: true
+      }
+    })
+
+    return seller
+  }
+
+  public async findByEmail(email: string): Promise<ISeller | null> {
+    const { prisma } = this.prismaContext
+
+    const seller = await prisma.seller.findUnique({
+      where: {
+        email
       },
       include: {
         affiliates: true,

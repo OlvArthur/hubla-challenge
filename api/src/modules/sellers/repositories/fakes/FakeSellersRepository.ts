@@ -37,8 +37,8 @@ class FakeSellersRepository implements IFindManySellersRepository, IFindOneSelle
     }
   ]
 
-  async findByName(sellerName: string): Promise<ISeller | null> {
-    const foundSeller = this.sellers.find(seller => seller.name.toLowerCase() === sellerName.toLowerCase())
+  async findByName(name: string): Promise<ISeller | null> {
+    const foundSeller = this.sellers.find(seller => seller.name.toLowerCase() === name.toLowerCase())
 
     if(!foundSeller) return null
 
@@ -46,22 +46,22 @@ class FakeSellersRepository implements IFindManySellersRepository, IFindOneSelle
   }
 
 
-  async findByNames(sellerNames: string[]): Promise<ISeller[]> {
-    const foundSellers = this.sellers.filter(seller => sellerNames.includes(seller.name.toLowerCase()))
+  async findByNames(names: string[]): Promise<ISeller[]> {
+    const foundSellers = this.sellers.filter(seller => names.includes(seller.name.toLowerCase()))
 
     return foundSellers
   }
 
-  async findById(sellerId: number): Promise<ISeller | null> {
-    const foundSeller = this.sellers.find(seller => seller.id === sellerId)
+  async findById(id: number): Promise<ISeller | null> {
+    const foundSeller = this.sellers.find(seller => seller.id === id)
 
     if(!foundSeller) return null
 
     return foundSeller
   }
 
-  async findByIds(sellerIds: number[]): Promise<ISeller[]> {
-    const foundSellers = this.sellers.filter(seller => sellerIds.includes(seller.id))
+  async findByIds(ids: number[]): Promise<ISeller[]> {
+    const foundSellers = this.sellers.filter(seller => ids.includes(seller.id))
 
     return foundSellers
   }

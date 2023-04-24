@@ -1,7 +1,7 @@
 import { ISeller } from "../../entitites/seller";
-import { IFindOneSellerByIdService } from "../../services/interfaces";
+import { IFindManySellersRepository } from "../IFindManySellersRepository";
 
-class FakeSellersService implements IFindOneSellerByIdService {
+class FakeSellersRepository implements IFindManySellersRepository {
   private sellers: ISeller[] = [
     {
       id: 1,
@@ -36,13 +36,17 @@ class FakeSellersService implements IFindOneSellerByIdService {
     }
   ]
 
-  public async execute(sellerId: number): Promise<ISeller> {
-    const foundSeller = this.sellers.find(seller => seller.id === sellerId)
+  async findByNames(sellerNames: string[]): Promise<ISeller[]> {
+    const foundSellers = this.sellers.filter(seller => sellerNames.includes(seller.name))
 
-    if(!foundSeller) throw new Error('No seller with this id was found')
+    return foundSellers
+  }
 
-    return foundSeller
+  async findByIds(sellerIds: number[]): Promise<ISeller[]> {
+    const foundSellers = this.sellers.filter(seller => sellerIds.includes(seller.id))
+
+    return foundSellers
   }
 }
 
-export default FakeSellersService
+export default FakeSellersRepository

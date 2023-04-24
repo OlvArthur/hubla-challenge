@@ -11,6 +11,7 @@ class ListTransactionsService implements IListTransactionsService {
   ) {}
   
   public async execute(authenticatedSellerId: number): Promise<ITransaction[]> {
+    // TODO change seller service to repository and handle missing seller error
     const seller = await this.findOneSellerService.execute(authenticatedSellerId)
 
     if (seller.isAdmin) return this.transactionsRepository.listAllTransactions()

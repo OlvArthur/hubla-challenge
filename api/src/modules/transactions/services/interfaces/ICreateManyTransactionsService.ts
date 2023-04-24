@@ -1,5 +1,5 @@
-import { ICreateTransactionDTO } from "../../DTOs/ICreateTransactionDTO";
+import { ICreateTransactionRequestDTO } from "../../DTOs";
 
 export interface ICreateManyTransactionsService {
-  execute(transactions: ICreateTransactionDTO[]): Promise<{ count: number }>
+  execute(transactions: ICreateTransactionRequestDTO[]): Promise<{ count: number }>
 }

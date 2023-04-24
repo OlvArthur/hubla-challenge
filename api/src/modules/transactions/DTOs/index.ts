@@ -7,3 +7,5 @@ export interface ICreateTransactionDTO {
   sellerName: string
   sellerId: number
 }
+
+export type ICreateTransactionRequestDTO = Omit<ICreateTransactionDTO, 'productId' | 'sellerId'>

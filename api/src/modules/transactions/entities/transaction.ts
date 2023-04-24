@@ -1,8 +1,7 @@
-export interface ITransaction {
-  id: number
-  typeId: number
-  date: Date
-  productId: number
-  valueInCents: number
-  sellerId: number
+import { TransactionType, Transaction, Product, Seller } from "../../../shared/infra/prisma/client"
+
+export interface ITransaction extends Transaction {
+  transactionType: TransactionType
+  product: Product
+  seller: Seller
 }

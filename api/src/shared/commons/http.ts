@@ -8,3 +8,12 @@ export const success = (data: any, message?: string, statusCode?: number): HttpR
     data: data
   }
 })
+
+
+export const created = (data: any, message?: string): HttpResponse => ({
+  statusCode: StatusCode.CREATED,
+  body: {
+    message: message ?? 'entity_successfully_created',
+    data: data
+  }
+})

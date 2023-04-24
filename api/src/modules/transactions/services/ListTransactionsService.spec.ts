@@ -2,22 +2,22 @@ import { beforeEach, describe, it, expect } from 'vitest'
 
 import { IListTransactionsService } from './interfaces/IListTransactionsService'
 import ListTransactionsService from './ListTransactionsService'
-import { IFindOneSellerByIdService } from '../../sellers/services/interfaces/IFindOneSellerByIdService'
-import FakeSellersService from '../../sellers/repositories/fakes/FakeSellersService'
 import { IListTransactionsRepository } from '../repositories/IListTransactionsRepository'
 import FakeTransactionsRepository from '../repositories/fakes/FakeTransactionsRepository'
+import FakeSellersRepository from '../../sellers/repositories/fakes/FakeSellersRepository'
+import { IFindOneSellerRepository } from '../../sellers/repositories/IFindOneSellerRepository'
 
 
 describe('When transactions are listed', () => {
   let sut: IListTransactionsService
   let fakeTransactionsRepository: IListTransactionsRepository
-  let fakeSellersService: IFindOneSellerByIdService
+  let fakeSellersRepository: IFindOneSellerRepository
 
   beforeEach(() => {
-    fakeSellersService = new FakeSellersService()
+    fakeSellersRepository = new FakeSellersRepository()
     fakeTransactionsRepository = new FakeTransactionsRepository()
 
-    sut = new ListTransactionsService(fakeTransactionsRepository, fakeSellersService)
+    sut = new ListTransactionsService(fakeTransactionsRepository, fakeSellersRepository)
   })
 
   it('should return all transactions if the user is an admin', async ()=> {

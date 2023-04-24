@@ -1,7 +1,8 @@
 import { ISeller } from "../../entitites/seller";
 import { IFindManySellersRepository } from "../IFindManySellersRepository";
+import { IFindOneSellerRepository } from "../IFindOneSellerRepository";
 
-class FakeSellersRepository implements IFindManySellersRepository {
+class FakeSellersRepository implements IFindManySellersRepository, IFindOneSellerRepository {
   private sellers: ISeller[] = [
     {
       id: 1,
@@ -36,10 +37,27 @@ class FakeSellersRepository implements IFindManySellersRepository {
     }
   ]
 
+  async findByName(sellerName: string): Promise<ISeller | null> {
+    const foundSeller = this.sellers.find(seller => seller.name === sellerName)
+
+    if(!foundSeller) return null
+
+    return foundSeller
+  }
+
+
   async findByNames(sellerNames: string[]): Promise<ISeller[]> {
     const foundSellers = this.sellers.filter(seller => sellerNames.includes(seller.name))
 
     return foundSellers
+  }
+
+  async findById(sellerId: number): Promise<ISeller | null> {
+    const foundSeller = this.sellers.find(seller => seller.id === sellerId)
+
+    if(!foundSeller) return null
+
+    return foundSeller
   }
 
   async findByIds(sellerIds: number[]): Promise<ISeller[]> {
@@ -47,6 +65,8 @@ class FakeSellersRepository implements IFindManySellersRepository {
 
     return foundSellers
   }
+
+
 }
 
 export default FakeSellersRepository

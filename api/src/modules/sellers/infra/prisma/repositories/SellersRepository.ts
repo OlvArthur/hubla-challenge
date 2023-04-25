@@ -4,7 +4,7 @@ import { ISeller } from "../../../entitites/seller";
 import { IFindManySellersRepository } from "../../../repositories/IFindManySellersRepository";
 
 import { computeBalance } from '../../../commons'
-export default class SellersRepository implements IFindOneSellerRepository, IFindManySellersRepository {
+export class SellersRepository implements IFindOneSellerRepository, IFindManySellersRepository {
   prismaContext: Context
 
   constructor(ctx?: Context) {

@@ -1,11 +1,10 @@
+import { ITransaction } from "../../../entities/transaction"
+import { Context, prisma as prismaClient } from "../../../../../shared/infra/prisma/ClientInstance"
+import { IListTransactionsRepository } from "../../../repositories/IListTransactionsRepository"
+import { ICreateManyTransactionsRepository } from "modules/transactions/repositories/ICreateManyTransactionsRepository"
+import { ICreateTransactionDTO } from "../../../DTOs"
 
-import { ITransaction } from "../../../entities/transaction";
-import { Context, prisma as prismaClient } from "../../../../../shared/infra/prisma/ClientInstance";
-import { IListTransactionsRepository } from "../../../repositories/IListTransactionsRepository";
-import { ICreateManyTransactionsRepository } from "modules/transactions/repositories/ICreateManyTransactionsRepository";
-import { ICreateTransactionDTO } from "../../../DTOs";
-
-export default class TransactionsRepository implements IListTransactionsRepository, ICreateManyTransactionsRepository {
+export class TransactionsRepository implements IListTransactionsRepository, ICreateManyTransactionsRepository {
   prismaContext: Context
 
   constructor(ctx?: Context) {

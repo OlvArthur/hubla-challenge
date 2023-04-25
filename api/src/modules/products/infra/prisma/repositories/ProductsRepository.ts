@@ -1,6 +1,6 @@
 import { IFindManyProductsRepository } from "../../../repositories/IFindManyProductsRepository"
 import { Context, prisma as prismaClient } from "../../../../../shared/infra/prisma/ClientInstance";
-import { IProduct } from "modules/products/entities/product";
+import { IProduct } from "../../../entities/product";
 
 export default class ProductsRepository implements IFindManyProductsRepository {
   prismaContext: Context

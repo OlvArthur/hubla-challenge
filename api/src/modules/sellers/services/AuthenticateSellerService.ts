@@ -8,7 +8,7 @@ import { IAuthenticateSellerRequestDTO } from "../DTOs"
 import { StatusCode } from '../../../shared/commons'
 
 
-class AuthenticateSellerService implements IAuthenticateSellerService {
+export class AuthenticateSellerService implements IAuthenticateSellerService {
   constructor(private sellersRepository: IFindOneSellerRepository, private authTokenProvider: ITokenProvider) {}
   
   public async execute({ email, password }: IAuthenticateSellerRequestDTO) {
@@ -26,4 +26,3 @@ class AuthenticateSellerService implements IAuthenticateSellerService {
   }
 }
 
-export default AuthenticateSellerService

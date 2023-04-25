@@ -2,13 +2,13 @@ import { ISeller } from "../../entitites/seller";
 import { IFindManySellersRepository } from "../IFindManySellersRepository";
 import { IFindOneSellerRepository } from "../IFindOneSellerRepository";
 
-class FakeSellersRepository implements IFindManySellersRepository, IFindOneSellerRepository {
+export class FakeSellersRepository implements IFindManySellersRepository, IFindOneSellerRepository {
   private sellers: ISeller[] = [
     {
       id: 1,
       name: 'Jhon Doe',
       email: 'jhon.doe@test.com',
-      password: 'testPassword',
+      password: '$2a$13$BBsc6/G.64lstbs9Sg8VKOxPsR9V3DhtbXk3hnhWp/y0WkhF3.YQK', // hash of 'testPassword'
       isAdmin: true,
       isAffiliatedTo: null,
       affiliates: [],
@@ -18,7 +18,7 @@ class FakeSellersRepository implements IFindManySellersRepository, IFindOneSelle
       id: 2,
       name: 'Jane Doe',
       email: 'jane.doe@test.com',
-      password: 'testPassword',
+      password: '$2a$13$BBsc6/G.64lstbs9Sg8VKOxPsR9V3DhtbXk3hnhWp/y0WkhF3.YQK',
       isAdmin: false,
       isAffiliatedTo: null,
       affiliates: [
@@ -26,7 +26,7 @@ class FakeSellersRepository implements IFindManySellersRepository, IFindOneSelle
           id: 3,
           name: 'Mark Doe',
           email: 'mark.doe@test.com',
-          password: 'testPassword',
+          password: '$2a$13$BBsc6/G.64lstbs9Sg8VKOxPsR9V3DhtbXk3hnhWp/y0WkhF3.YQK',
           isAdmin: false,
           isAffiliatedTo: 2
         }
@@ -37,7 +37,7 @@ class FakeSellersRepository implements IFindManySellersRepository, IFindOneSelle
       id: 3,
       name: 'Mark Doe',
       email: 'mark.doe@test.com',
-      password: 'testPassword',
+      password: '$2a$13$BBsc6/G.64lstbs9Sg8VKOxPsR9V3DhtbXk3hnhWp/y0WkhF3.YQK',
       isAdmin: false,
       isAffiliatedTo: 2,
       affiliates: [],
@@ -85,4 +85,3 @@ class FakeSellersRepository implements IFindManySellersRepository, IFindOneSelle
 
 }
 
-export default FakeSellersRepository

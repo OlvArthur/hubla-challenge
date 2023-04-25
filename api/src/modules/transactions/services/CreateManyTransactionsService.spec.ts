@@ -1,10 +1,12 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
-import CreateManyTransactionsService from "./CreateManyTransactionsService";
-import FakeTransactionsRepository from "../repositories/fakes/FakeTransactionsRepository";
+import AppError from '../../../shared/commons/AppError'
+
+import { CreateManyTransactionsService } from "./CreateManyTransactionsService";
+import { FakeTransactionsRepository } from "../repositories/fakes/FakeTransactionsRepository";
 import { ICreateManyTransactionsRepository } from "../repositories/ICreateManyTransactionsRepository";
 import { IFindManySellersRepository } from "../../sellers/repositories/IFindManySellersRepository";
-import FakeSellersRepository from "../../sellers/repositories/fakes/FakeSellersRepository";
+import { FakeSellersRepository } from "../../sellers/repositories/fakes/FakeSellersRepository";
 import { ICreateManyTransactionsService } from "./interfaces/ICreateManyTransactionsService";
 import { IFindManyProductsRepository } from "../../products/repositories/IFindManyProductsRepository";
 import FakeProductsRepository from "../../products/repositories/fakes/FakeProductsRepository";
@@ -87,7 +89,7 @@ describe('When many transactions are created', () => {
       }
     ]
 
-    await expect(sut.execute(transactionsToBeCreated)).rejects.toThrowError()
+    await expect(sut.execute(transactionsToBeCreated)).rejects.toBeInstanceOf(AppError)
   })
 
   it('should fail if there is any transaction from an inexistent product', async () => {

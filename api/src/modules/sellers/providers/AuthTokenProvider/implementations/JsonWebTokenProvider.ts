@@ -5,7 +5,7 @@ import authConfig from '../../../../../config/auth'
 import { ITokenProvider } from '../interfaces/ITokenProvider'
 
 
-export default class JWTTokenProvider implements ITokenProvider{
+export class JWTTokenProvider implements ITokenProvider{
   generateToken(payload: string): string {
     const { secret, expiresIn } = authConfig.jwt
     

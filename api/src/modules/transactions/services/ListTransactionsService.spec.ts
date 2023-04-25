@@ -3,8 +3,8 @@ import { beforeEach, describe, it, expect } from 'vitest'
 import { IListTransactionsService } from './interfaces/IListTransactionsService'
 import ListTransactionsService from './ListTransactionsService'
 import { IListTransactionsRepository } from '../repositories/IListTransactionsRepository'
-import FakeTransactionsRepository from '../repositories/fakes/FakeTransactionsRepository'
-import FakeSellersRepository from '../../sellers/repositories/fakes/FakeSellersRepository'
+import { FakeTransactionsRepository } from '../repositories/fakes/FakeTransactionsRepository'
+import { FakeSellersRepository } from '../../sellers/repositories/fakes/FakeSellersRepository'
 import { IFindOneSellerRepository } from '../../sellers/repositories/IFindOneSellerRepository'
 
 

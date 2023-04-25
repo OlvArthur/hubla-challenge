@@ -4,7 +4,7 @@ import { ICreateManyTransactionsRepository } from "../ICreateManyTransactionsRep
 import { IListTransactionsRepository } from "../IListTransactionsRepository";
 import { TransactionType, Product, Seller } from "../../../../shared/infra/prisma/client";
 
-class FakeTransactionsRepository implements IListTransactionsRepository, ICreateManyTransactionsRepository {
+export class FakeTransactionsRepository implements IListTransactionsRepository, ICreateManyTransactionsRepository {
   private transactions: ITransaction[] = [
     {
       id: 1,
@@ -93,4 +93,3 @@ class FakeTransactionsRepository implements IListTransactionsRepository, ICreate
   }
 }
 
-export default FakeTransactionsRepository

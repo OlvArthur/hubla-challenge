@@ -8,7 +8,7 @@ import { ICreateManyTransactionsService } from "./interfaces/ICreateManyTransact
 import { IFindManyProductsRepository } from "../../products/repositories/IFindManyProductsRepository"
 import { IProduct } from "../../products/entities/product"
 
-class CreateManyTransactionsService implements ICreateManyTransactionsService {
+export class CreateManyTransactionsService implements ICreateManyTransactionsService {
   constructor(
     private sellersRepository: IFindManySellersRepository,
     private productsRepository: IFindManyProductsRepository,
@@ -108,5 +108,3 @@ class CreateManyTransactionsService implements ICreateManyTransactionsService {
   }
 
 }
-
-export default CreateManyTransactionsService

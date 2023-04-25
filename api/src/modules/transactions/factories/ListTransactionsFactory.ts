@@ -1,6 +1,6 @@
 import SellersRepository from "../../sellers/infra/prisma/repositories/SellersRepository"
 import ListTransactionsController from "../infra/express/controllers/ListTransactionsController"
-import TransactionsRepository from "../infra/prisma/repositories/TransactionsRepository"
+import { TransactionsRepository } from "../infra/prisma/repositories/TransactionsRepository"
 import ListTransactionsService from "../services/ListTransactionsService"
 
 export const listTransactionsFactory = (): ListTransactionsController => {

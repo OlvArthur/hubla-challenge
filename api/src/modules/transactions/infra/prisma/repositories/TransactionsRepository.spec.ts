@@ -1,15 +1,9 @@
-import { describe, beforeEach, it, expect, vi } from 'vitest'
-import { mockDeep, DeepMockProxy } from 'vitest-mock-extended'
+import { describe, beforeEach, it, expect } from 'vitest'
 
-import { PrismaClient } from '../../../../../shared/infra/prisma/client'
 import { TransactionsRepository } from './TransactionsRepository'
 import { ICreateTransactionDTO } from 'modules/transactions/DTOs'
 
-export type MockContext = {
-  prisma: DeepMockProxy<PrismaClient>
-}
-
-const createMockContext = (): MockContext => ({ prisma: mockDeep<PrismaClient>() })
+import { createMockContext, MockContext } from '../../../../../shared/infra/prisma/__mocks__/ClientInstance'
 
 let mockContext: MockContext
 let sut: TransactionsRepository

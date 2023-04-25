@@ -2,7 +2,7 @@ import { IFindManyProductsRepository } from "../../../repositories/IFindManyProd
 import { Context, prisma as prismaClient } from "../../../../../shared/infra/prisma/ClientInstance";
 import { IProduct } from "../../../entities/product";
 
-export default class ProductsRepository implements IFindManyProductsRepository {
+export class ProductsRepository implements IFindManyProductsRepository {
   prismaContext: Context
 
   constructor(ctx?: Context) {

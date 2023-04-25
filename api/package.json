@@ -7,6 +7,8 @@
     "db:reset": "yarn pnpify prisma migrate reset",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
+    "test:integration":"./scripts/run-integration.sh",
+    "test:integration:ui":"yarn test:integration --ui",
     "test": "vitest"
   },
   "devDependencies": {

@@ -11,7 +11,8 @@ export default defineConfig({
         'src/**/fakes',
         '**/*.spec.ts',
         '**/commons/**',
-        '**/shared/**'
+        '**/shared/**',
+        '**/src/tests/**'
       ]
     }
   }

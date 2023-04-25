@@ -30,6 +30,7 @@ services:
     command: yarn dev:server
     ports:
       - 5000:5000
+      - 5001:5001 # integration testing port 
       - 9229:9229 # debugger port
     working_dir: /src
     volumes:

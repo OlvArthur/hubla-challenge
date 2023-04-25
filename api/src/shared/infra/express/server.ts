@@ -4,9 +4,9 @@ import express, { Request, Response, NextFunction } from 'express'
 import router from './router'
 import AppError from '../../commons/AppError'
 
-const app = express()
+export const app = express()
 
-const PORT = 5000
+const PORT = process.env.PORT ?? 5000
 
 app.use(express.json())
 

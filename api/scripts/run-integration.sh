@@ -9,7 +9,7 @@ $DIR/wait-for-it.sh "${DATABASE_URL}" -- echo '🟢 - Database is ready!'
 yarn pnpify prisma migrate dev --name init
 if [ "$#" -eq  "0" ]
   then
-    vitest -c ./vitest.config.integration.ts
+    vitest -c ./vitest.config.integration.ts --silent
 else
-    vitest -c ./vitest.config.integration.ts --ui
+    vitest -c ./vitest.config.integration.ts --silent --ui
 fi

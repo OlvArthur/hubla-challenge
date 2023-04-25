@@ -1,6 +1,8 @@
 import 'express-async-errors'
 import express, { Request, Response, NextFunction } from 'express'
+import swaggerUi from 'swagger-ui-express'
 
+import { swaggerDocument } from '../../../config/swagger'
 import router from './router'
 import AppError from '../../commons/AppError'
 
@@ -8,6 +10,7 @@ export const app = express()
 
 const PORT = process.env.PORT ?? 5000
 
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use(express.json())
 
 app.use(router)

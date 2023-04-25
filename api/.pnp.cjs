@@ -34,6 +34,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/express", "npm:4.17.17"],\
             ["@types/jsonwebtoken", "npm:9.0.1"],\
             ["@types/supertest", "npm:2.0.12"],\
+            ["@types/swagger-ui-express", "npm:4.1.3"],\
             ["@vitest/coverage-c8", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:0.30.1"],\
             ["@vitest/ui", "npm:0.30.1"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.42"],\
@@ -44,6 +45,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jsonwebtoken", "npm:9.0.0"],\
             ["prisma", "npm:4.13.0"],\
             ["supertest", "npm:6.3.3"],\
+            ["swagger-ui-express", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:4.6.2"],\
             ["ts-node", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:10.9.1"],\
             ["ts-node-dev", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:2.0.0"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=85af82"],\
@@ -776,6 +778,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/swagger-ui-express", [\
+        ["npm:4.1.3", {\
+          "packageLocation": "./.yarn/cache/@types-swagger-ui-express-npm-4.1.3-0c91a9cfb5-1c990fa8c1.zip/node_modules/@types/swagger-ui-express/",\
+          "packageDependencies": [\
+            ["@types/swagger-ui-express", "npm:4.1.3"],\
+            ["@types/express", "npm:4.17.17"],\
+            ["@types/serve-static", "npm:1.15.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/treeify", [\
         ["npm:1.0.0", {\
           "packageLocation": "./.yarn/cache/@types-treeify-npm-1.0.0-b5e04e9cd3-1b2397030d.zip/node_modules/@types/treeify/",\
@@ -1137,6 +1150,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/express", "npm:4.17.17"],\
             ["@types/jsonwebtoken", "npm:9.0.1"],\
             ["@types/supertest", "npm:2.0.12"],\
+            ["@types/swagger-ui-express", "npm:4.1.3"],\
             ["@vitest/coverage-c8", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:0.30.1"],\
             ["@vitest/ui", "npm:0.30.1"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.42"],\
@@ -1147,6 +1161,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jsonwebtoken", "npm:9.0.0"],\
             ["prisma", "npm:4.13.0"],\
             ["supertest", "npm:6.3.3"],\
+            ["swagger-ui-express", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:4.6.2"],\
             ["ts-node", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:10.9.1"],\
             ["ts-node-dev", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:2.0.0"],\
             ["typescript", "patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=85af82"],\
@@ -4191,6 +4206,38 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/supports-preserve-symlinks-flag-npm-1.0.0-f17c4d0028-53b1e247e6.zip/node_modules/supports-preserve-symlinks-flag/",\
           "packageDependencies": [\
             ["supports-preserve-symlinks-flag", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["swagger-ui-dist", [\
+        ["npm:4.18.2", {\
+          "packageLocation": "./.yarn/cache/swagger-ui-dist-npm-4.18.2-7aefabc247-3d3e801104.zip/node_modules/swagger-ui-dist/",\
+          "packageDependencies": [\
+            ["swagger-ui-dist", "npm:4.18.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["swagger-ui-express", [\
+        ["npm:4.6.2", {\
+          "packageLocation": "./.yarn/cache/swagger-ui-express-npm-4.6.2-d5646138c6-3883dc9243.zip/node_modules/swagger-ui-express/",\
+          "packageDependencies": [\
+            ["swagger-ui-express", "npm:4.6.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:4.6.2", {\
+          "packageLocation": "./.yarn/__virtual__/swagger-ui-express-virtual-b1480a1c51/0/cache/swagger-ui-express-npm-4.6.2-d5646138c6-3883dc9243.zip/node_modules/swagger-ui-express/",\
+          "packageDependencies": [\
+            ["swagger-ui-express", "virtual:7473a2b7820d54bc9e09e43d07c4d6a37311d3c27cf8d3479124c02c830f39ea1edcd0240ea9cd8892e68b95c71dc40f3562d9221ee2fee4332c0f6b026a8253#npm:4.6.2"],\
+            ["@types/express", "npm:4.17.17"],\
+            ["express", "npm:4.18.2"],\
+            ["swagger-ui-dist", "npm:4.18.2"]\
+          ],\
+          "packagePeers": [\
+            "@types/express",\
+            "express"\
           ],\
           "linkType": "HARD"\
         }]\

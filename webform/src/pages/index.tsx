@@ -1,22 +1,46 @@
-import { useForm } from 'react-hook-form'
+import { Resolver, useForm } from 'react-hook-form'
+import { useAuth, SignInCredentials } from '../context/auth'
+
+type FormValues = {
+  email: string
+  password: string
+}
+
+const resolver: Resolver<FormValues> = async (values) => {
+  return {
+    values: values.email && values.password ? values : {},
+    errors: !values.email || !values.password
+      ? {
+          email: {
+            type: 'required',
+            message: 'This is required.',
+          },
+          password: {
+            type: 'required',
+            message: 'This is required'
+          }
+        }
+      : {},
+  }
+}
 
 export default function Example() {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm<FormValues>({ resolver });
+  const { signIn } = useAuth()
 
-  function handleSign(data) {
-    console.log(data)
+  async function handleSign({ email, password }: SignInCredentials) {
+    try {
+      await signIn({
+        email,
+        password
+      })
+    } catch {
+      alert('Login failed: Invalid username or password.\n Please check your credentials and try again')
+    }
   }
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -53,11 +77,6 @@ export default function Example() {
                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                   Password
                 </label>
-                <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Forgot password?
-                  </a>
-                </div>
               </div>
               <div className="mt-2">
                 <input
@@ -82,12 +101,6 @@ export default function Example() {
             </div>
           </form>
 
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Start a 14 day free trial
-            </a>
-          </p>
         </div>
       </div>
     </>

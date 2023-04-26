@@ -2,14 +2,16 @@ import {
   createContext,
   ReactElement,
   ReactNode,
-  useCallback,
   useContext,
+  useEffect,
   useState,
 } from 'react'
 
+import { destroyCookie, parseCookies, setCookie } from 'nookies'
+import Router from 'next/router'
 import { FieldValues } from 'react-hook-form'
 
-import api from '../services/api'
+import { getApiClient } from '../services/api'
 
 interface Seller {
   id: string
@@ -31,8 +33,9 @@ export interface SignInCredentials extends FieldValues {
 }
 
 interface AuthContextData {
-  seller: Seller
-  signIn(data: SignInCredentials): Promise<{ errorMessage: string } | void>
+  seller: Seller | undefined
+  token: string | undefined
+  signIn(data: SignInCredentials): Promise<void>
   signOut(): void
 }
 
@@ -42,46 +45,58 @@ interface AuthProviderProps {
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
-  const [data, setData] = useState<AuthState>(() => {
-    const loggedSeller = localStorage.getItem('@Hubla:user')
-    const token = localStorage.getItem('@Hubla:token')
+  const [data, setData] = useState<null | AuthState>(null)
 
-    if (loggedSeller && token) {
-      api.defaults.headers.authorization = `Bearer ${token}`
+  useEffect(() => {
+    const { 'hubla:token': token, 'hubla:seller': seller  } = parseCookies()
 
-      return {
-        seller: JSON.parse(loggedSeller),
-        token,
-      }
+    if(token) {
+      setData({
+        seller: JSON.parse(seller),
+        token
+      })
     }
-    return {} as AuthState
-  })
+  }, [])
 
-  const signIn = useCallback(async ({ email, password }: SignInCredentials) => {
-    const response = await api.post('login', {
+  const signIn = async ({ email, password }: SignInCredentials) => {
+    const api = getApiClient()
+    const response = await api.post('/login', {
       email,
-      password,
+      password
     })
 
     const { data: { token, seller } } = response.data
+    
+    const oneDay = 60 * 60 * 24
+    setCookie(undefined, 'hubla:token', token, {
+      maxAge: oneDay
+    })
+    setCookie(undefined, 'hubla:seller', JSON.stringify(seller), {
+      maxAge: oneDay
+    })
 
-    localStorage.setItem('@Hubla:seller', JSON.stringify(seller))
-    localStorage.setItem('@Hubla:token', token)
+    api.defaults.headers['Authorization'] = `Bearer ${token}`
 
-    api.defaults.headers.authorization = `Bearer ${token}`
+    setData({
+      seller,
+      token
+    })
 
-    setData({ seller, token })
-  }, [])
+    Router.push('/dashboard')
 
-  const signOut = useCallback(() => {
-    localStorage.removeItem('@Hubla:seller')
-    localStorage.removeItem('@Hubla:token')
 
+  }
+
+  const signOut = () => {
+    destroyCookie(undefined, 'hubla:seller')
+    destroyCookie(undefined, 'hubla:token')
+
+    Router.push('/')
     setData({} as AuthState)
-  }, [])
+  }
 
   return (
-    <AuthContext.Provider value={{ seller: data.seller, signIn, signOut }}>
+    <AuthContext.Provider value={{ seller: data?.seller, token: data?.token , signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )

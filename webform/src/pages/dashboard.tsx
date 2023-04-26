@@ -9,6 +9,9 @@ import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
 import { useAuth } from '@/context/auth'
 
+import { DragAndDrop } from '../components/DragAndDrop'
+import { HeaderBar } from '../components/HeaderBar'
+
 const navigation = [
   'Dashboard',
   'Reports',
@@ -47,7 +50,7 @@ interface Transaction {
     seller: Seller
 }
 
-export default function Example({ transactions }: { transactions: Transaction[] }) {
+export default function FileUploader({ transactions }: { transactions: Transaction[] }) {
   const { seller, signOut } = useAuth()
 
   return (
@@ -74,7 +77,6 @@ export default function Example({ transactions }: { transactions: Transaction[] 
                       {navigation.map((item, itemIdx) =>
                         itemIdx === 0 ? (
                           <Fragment key={itemIdx}>
-                            {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                             <a href="#" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
                               {item}
                             </a>
@@ -158,26 +160,7 @@ export default function Example({ transactions }: { transactions: Transaction[] 
             </div>
 
             <Disclosure.Panel className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                {navigation.map((item, itemIdx) =>
-                  itemIdx === 0 ? (
-                    <Fragment key={item}>
-                      {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                      <a href="#" className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
-                        {item}
-                      </a>
-                    </Fragment>
-                  ) : (
-                    <a
-                      key={item}
-                      href="#"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                    >
-                      {item}
-                    </a>
-                  )
-                )}
-              </div>
+              <HeaderBar navigatioTabOptions={navigation} />
               <div className="pt-4 pb-3 border-t border-gray-700">
                 <div className="flex items-center px-5">
                   <div className="flex-shrink-0">
@@ -216,23 +199,7 @@ export default function Example({ transactions }: { transactions: Transaction[] 
         </div>
       </header>
       <main>
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          {/* Replace with your content */}
-          <div className="px-4 py-6 sm:px-0">
-                <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <svg aria-hidden="true" className="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">.txt only</p>
-                    </div>
-                    <input id="dropzone-file" type="file" className="hidden" />
-                </label>
-          </div>
-          <div className="px-4 py-6 sm:px-0">
-            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
-          </div>
-          {/* /End replace */}
-        </div>
+        <DragAndDrop />
       </main>
     </div>
   )

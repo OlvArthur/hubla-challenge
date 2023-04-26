@@ -1,6 +1,7 @@
 import 'express-async-errors'
 import express, { Request, Response, NextFunction } from 'express'
 import swaggerUi from 'swagger-ui-express'
+import cors from 'cors'
 
 import { swaggerDocument } from '../../../config/swagger'
 import router from './router'
@@ -10,7 +11,9 @@ export const app = express()
 
 const PORT = process.env.PORT ?? 5000
 
+
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use(cors())
 app.use(express.json())
 
 app.use(router)

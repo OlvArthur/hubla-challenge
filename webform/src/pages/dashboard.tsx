@@ -9,7 +9,7 @@ import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
 import { useAuth } from '@/context/auth'
 
-import { DragAndDrop } from '../components/DragAndDrop'
+import { DragAndDropFileUploader } from '../components/DragAndDrop'
 import { HeaderBar } from '../components/HeaderBar'
 
 const navigation = [
@@ -46,7 +46,7 @@ interface Transaction {
     date: Date
     valueInCents: number
     transactionType: TransactionType
-    product: Product,
+    product: Product
     seller: Seller
 }
 
@@ -199,7 +199,7 @@ export default function FileUploader({ transactions }: { transactions: Transacti
         </div>
       </header>
       <main>
-        <DragAndDrop />
+        <DragAndDropFileUploader />
       </main>
     </div>
   )

@@ -92,7 +92,6 @@ export const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
     destroyCookie(undefined, 'hubla:seller')
     destroyCookie(undefined, 'hubla:token')
 
-    Router.push('/')
     setData({} as AuthState)
   }
 

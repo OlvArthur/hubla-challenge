@@ -129,7 +129,7 @@ export default function Dashboard({ transactions }: { transactions: Transaction[
                             >
                               <Menu.Item>
                                 <Link
-                                  href="#"
+                                  href="/"
                                   className='block px-4 py-2 text-sm text-gray-700'
                                   onClick={signOut}
                                 >
@@ -197,7 +197,7 @@ export default function Dashboard({ transactions }: { transactions: Transaction[
                 </div>
                 <div className="mt-3 px-2 space-y-1">
                   <Link
-                    href="#"
+                    href="/"
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
                     onClick={signOut}
                   >

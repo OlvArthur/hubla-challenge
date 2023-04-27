@@ -1,20 +1,19 @@
-import { describe,  expect,  it } from 'vitest'
+import { beforeEach, describe,  expect,  it } from 'vitest'
 import request from 'supertest'
+import { hash } from 'bcryptjs'
+import { verify } from 'jsonwebtoken'
 
 
 import { app } from '../shared/infra/express/server'
 import { StatusCode } from '../shared/commons'
-import { verify } from 'jsonwebtoken'
 import authConfig from '../config/auth'
 import { prisma } from '../shared/infra/prisma/ClientInstance'
-import { hash } from 'bcryptjs'
 
 
 describe('/login', () => {
 
   describe('[POST] /login', () => {
-
-    it('should return 200 as status code and authenticated seller info', async () => {
+    beforeEach(async () => {
       await prisma.seller.create({
         data: {
           email: 'arthur.oliveira@hub.la',
@@ -22,7 +21,9 @@ describe('/login', () => {
           password: await hash('candidato contratado', 8),
         }
       })
-      
+    })
+
+    it('should return 200 as status code and authenticated seller info', async () => {
       const { body: { message, data }, statusCode } = await request(app).post('/login').send({
           email:'arthur.oliveira@hub.la',
           password: "candidato contratado"
@@ -48,14 +49,6 @@ describe('/login', () => {
     })
 
     it('should return 400 as status code if the email exists, but the password is incorrect', async () => {
-      await prisma.seller.create({
-        data: {
-          email: 'arthur.oliveira@hub.la',
-          name: 'arthur oliveira',
-          password: await hash('candidato contratado', 8),
-        }
-      })
-      
       const { body: { message, status }, statusCode } = await request(app).post('/login').send({
         email: 'arthur.oliveira@hub.la',
         password: "wrong password"

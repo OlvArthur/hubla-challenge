@@ -71,6 +71,29 @@ describe('When many transactions are created', () => {
     expect(createdTransactionsCount).toEqual(2)
   })
 
+  it('should save regardless of leading or trailing space on any product description', async () => {
+    const transactionsToBeCreated = [
+      {
+        date: new Date(),
+        typeId: 3,
+        productDescription: 'curso full stack     ',
+        sellerName: 'jhon doe',
+        valueInCents: 3544
+      },
+      {
+        date: new Date(),
+        typeId: 2,
+        productDescription: '     Dominando investimentos',
+        sellerName: 'jhon doe',
+        valueInCents: 255
+      },
+    ]
+
+    const { count: createdTransactionsCount } = await sut.execute(transactionsToBeCreated)
+
+    expect(createdTransactionsCount).toEqual(2)
+  })
+
   it('should fail if there is any transaction from an inexistent seller', async () => {
     const transactionsToBeCreated = [
       {
@@ -110,6 +133,6 @@ describe('When many transactions are created', () => {
       }
     ]
 
-    await expect(sut.execute(transactionsToBeCreated)).rejects.toThrowError()
+    await expect(sut.execute(transactionsToBeCreated)).rejects.toBeInstanceOf(AppError)
   })
 })

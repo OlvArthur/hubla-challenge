@@ -6,10 +6,10 @@
     "db:migrate": "yarn pnpify prisma migrate dev && yarn pnpify prisma db seed",
     "db:reset": "yarn pnpify prisma migrate reset",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui",
+    "test:unit:ui": "vitest --ui",
     "test:integration": "./scripts/run-integration.sh",
     "test:integration:ui": "yarn test:integration --ui",
-    "test": "vitest"
+    "test:unit": "vitest"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

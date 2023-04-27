@@ -31,10 +31,10 @@ export class CreateManyTransactionsService implements ICreateManyTransactionsSer
 
   getSellerNamesAndProductDescriptionsFromTransactions(transactions: ICreateTransactionRequestDTO[]) {
     const [sellerNames, productDescriptions] = transactions.reduce((acc, curr) => {
-      const transactionSellerName = curr.sellerName.toLowerCase()
+      const transactionSellerName = curr.sellerName.toLowerCase().trim()
       acc[0].push(transactionSellerName)
 
-      const transactionProductDescription = curr.productDescription.toLowerCase()
+      const transactionProductDescription = curr.productDescription.toLowerCase().trim()
       acc[1].push(transactionProductDescription)
       
       return acc
@@ -51,23 +51,23 @@ export class CreateManyTransactionsService implements ICreateManyTransactionsSer
     const parsedProducts = this.parseProductsByDescription(products)
     
     const enrichedDTOs: ICreateTransactionDTO[] = transactionsDTOs.map(transactionDTO => {
-      const transactionSeller = parsedSellers[transactionDTO.sellerName.toLowerCase()]
+      const transactionSeller = parsedSellers[transactionDTO.sellerName.toLowerCase().trim()]
 
       if(!transactionSeller) {
         throw new AppError(
-          'the operation could no be completed due to an inexistent seller name',
+          'the operation could not be completed due to an inexistent seller name',
           StatusCode.BAD_REQUEST,
-          { sellerName: transactionDTO.sellerName }
+          { sellerName: transactionDTO.sellerName.toLowerCase().trim() }
         )
       }
 
-      const transactionProduct = parsedProducts[transactionDTO.productDescription.toLowerCase()]
+      const transactionProduct = parsedProducts[transactionDTO.productDescription.toLowerCase().trim()]
 
       if(!transactionProduct) {
         throw new AppError(
-          'the operation could no be completed due to an inexistent product description',
+          'the operation could not be completed due to an inexistent product description',
           StatusCode.BAD_REQUEST,
-          { productDescription: transactionDTO.productDescription }
+          { productDescription: transactionDTO.productDescription.toLowerCase().trim() }
         )
       }
 
@@ -85,7 +85,7 @@ export class CreateManyTransactionsService implements ICreateManyTransactionsSer
 
   parseSellersByName(sellers: ISeller[]) {
     const parsedSellers = sellers.reduce<{ [name: string]: ISeller }>((acc, seller) => {
-      const sellerName = seller.name.toLowerCase()
+      const sellerName = seller.name.toLowerCase().trim()
       seller.name = sellerName
       
       acc[sellerName] = seller
@@ -97,7 +97,7 @@ export class CreateManyTransactionsService implements ICreateManyTransactionsSer
 
   parseProductsByDescription(products: IProduct[]) {
     const parsedSellers = products.reduce<{ [description: string]: IProduct }>((acc, product) => {
-      const productDescription = product.description.toLowerCase()
+      const productDescription = product.description.toLowerCase().trim()
       product.description = productDescription
       
       acc[productDescription] = product

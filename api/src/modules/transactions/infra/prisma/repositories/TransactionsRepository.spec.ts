@@ -1,7 +1,7 @@
 import { describe, beforeEach, it, expect } from 'vitest'
 
 import { TransactionsRepository } from './TransactionsRepository'
-import { ICreateTransactionDTO } from 'modules/transactions/DTOs'
+import { ICreateTransactionDTO } from '../../../DTOs'
 
 import { createMockContext, MockContext } from '../../../../../shared/infra/prisma/__mocks__/ClientInstance'
 
@@ -88,6 +88,5 @@ describe('When transactions are listed', () => {
         }
       })
     )
-
   })
 })

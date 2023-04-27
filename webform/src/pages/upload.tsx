@@ -9,8 +9,8 @@ import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
 import { useAuth } from '@/context/auth'
 
+import { DragAndDropFileUploader } from '../components/DragAndDrop'
 import { HeaderBar } from '../components/HeaderBar'
-import { BalanceReport } from '@/components/BalanceReports'
 
 const navigation = [
   'Dashboard',
@@ -50,13 +50,13 @@ interface Transaction {
     seller: Seller
 }
 
-export default function Dashboard({ transactions }: { transactions: Transaction[] }) {
+export default function FileUploader({ transactions }: { transactions: Transaction[] }) {
   const { seller, signOut } = useAuth()
 
   return (
     <div>
       <Head>
-        <title>Balance Report</title>
+        <title>Dashboard</title>
       </Head>
 
       <Disclosure as="nav" className="bg-gray-800">
@@ -195,11 +195,11 @@ export default function Dashboard({ transactions }: { transactions: Transaction[
 
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">Balance Report</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
         </div>
       </header>
       <main>
-        <BalanceReport />
+        <DragAndDropFileUploader />
       </main>
     </div>
   )

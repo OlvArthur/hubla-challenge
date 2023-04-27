@@ -82,7 +82,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): ReactElement => {
       token
     })
 
-    Router.push('/dashboard')
+    Router.push('/upload')
 
 
   }

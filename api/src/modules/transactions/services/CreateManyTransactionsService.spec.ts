@@ -10,19 +10,23 @@ import { FakeSellersRepository } from "../../sellers/repositories/fakes/FakeSell
 import { ICreateManyTransactionsService } from "./interfaces/ICreateManyTransactionsService";
 import { IFindManyProductsRepository } from "../../products/repositories/IFindManyProductsRepository";
 import FakeProductsRepository from "../../products/repositories/fakes/FakeProductsRepository";
+import { FakeTransactionTypesRepository } from "../repositories/fakes/FakeTransactionTypesRepository";
+import { IFindManyTransactionTypesRepository } from "../repositories/IFindManyTransactionTipesRepository";
 
 describe('When many transactions are created', () => {
   let sut: ICreateManyTransactionsService
   let fakeTransactionsRepository: ICreateManyTransactionsRepository
   let fakeSellersRepository: IFindManySellersRepository
   let fakeProductsRepository: IFindManyProductsRepository
+  let fakeTransactionTypesRepository: IFindManyTransactionTypesRepository
 
   beforeEach(() => {
     fakeSellersRepository = new FakeSellersRepository()
     fakeProductsRepository = new FakeProductsRepository()
+    fakeTransactionTypesRepository = new FakeTransactionTypesRepository()
     fakeTransactionsRepository = new FakeTransactionsRepository()
 
-    sut = new CreateManyTransactionsService(fakeSellersRepository, fakeProductsRepository, fakeTransactionsRepository)
+    sut = new CreateManyTransactionsService(fakeSellersRepository, fakeProductsRepository, fakeTransactionTypesRepository, fakeTransactionsRepository)
   })
 
   it('should save them successfully', async () => {
@@ -122,6 +126,27 @@ describe('When many transactions are created', () => {
         typeId: 3,
         productDescription: 'inexistent product',
         sellerName: 'Jhon Doe',
+        valueInCents: 3544
+      },
+      {
+        date: new Date(),
+        typeId: 2,
+        productDescription: 'Dominando investimentos',
+        sellerName: 'Jhon Doe',
+        valueInCents: 255
+      }
+    ]
+
+    await expect(sut.execute(transactionsToBeCreated)).rejects.toBeInstanceOf(AppError)
+  })
+
+  it('should fail if there is any transaction from an inexistent type', async () => {
+    const transactionsToBeCreated = [
+      {
+        date: new Date(),
+        typeId: 8,
+        productDescription: 'Curso Full Stack',
+        sellerName: 'jhon Doe',
         valueInCents: 3544
       },
       {

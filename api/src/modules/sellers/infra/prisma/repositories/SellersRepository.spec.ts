@@ -1,4 +1,4 @@
-import { describe, beforeEach, it, expect, vi } from 'vitest'
+import { describe, beforeEach, it, expect } from 'vitest'
 
 import { SellersRepository } from './SellersRepository'
 

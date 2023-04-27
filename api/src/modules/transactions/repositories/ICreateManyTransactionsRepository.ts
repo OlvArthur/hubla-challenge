@@ -1,4 +1,4 @@
-import { ICreateTransactionDTO } from '../DTOs/ICreateTransactionDTO'
+import { ICreateTransactionDTO } from "../DTOs";
 
 export interface ICreateManyTransactionsRepository {
   createMany(transactions: ICreateTransactionDTO[]): Promise<{ count: number }>

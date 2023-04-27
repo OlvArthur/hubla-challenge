@@ -7,48 +7,56 @@ import { ICreateManyTransactionsRepository } from "../repositories/ICreateManyTr
 import { ICreateManyTransactionsService } from "./interfaces/ICreateManyTransactionsService"
 import { IFindManyProductsRepository } from "../../products/repositories/IFindManyProductsRepository"
 import { IProduct } from "../../products/entities/product"
+import { IFindManyTransactionTypesRepository } from '../repositories/IFindManyTransactionTipesRepository'
+import { ITransactionType } from '../entities/transactionType'
 
 export class CreateManyTransactionsService implements ICreateManyTransactionsService {
   constructor(
     private sellersRepository: IFindManySellersRepository,
     private productsRepository: IFindManyProductsRepository,
+    private transactionTypesRepository: IFindManyTransactionTypesRepository,
     private transactionsRepository: ICreateManyTransactionsRepository,
   ) {}
 
   async execute(transactions: ICreateTransactionRequestDTO[]): Promise<{ count: number }> {
-    // TODO check if all typeID exists, if not return which ones don`t exist
+    const { sellerNames, productDescriptions, typeIds } = this.getEntitiesIdentifiersFromTransactions(transactions)
 
-    const { sellerNames, productDescriptions } = this.getSellerNamesAndProductDescriptionsFromTransactions(transactions)
+    const transactionTypes = await this.transactionTypesRepository.findByIds(typeIds)
 
     const products = await this.productsRepository.findByDescriptions(productDescriptions)
 
     const sellers = await this.sellersRepository.findByNames(sellerNames)
 
-    const enrichedDTOs = this.enrichDTOwithProductIdAndSellerId(transactions, products, sellers)
+    const enrichedDTOs = this.enrichDTOAndValidateEntitiesExistence(transactions, products, sellers, transactionTypes)
 
     return await this.transactionsRepository.createMany(enrichedDTOs)
   }
 
-  getSellerNamesAndProductDescriptionsFromTransactions(transactions: ICreateTransactionRequestDTO[]) {
-    const [sellerNames, productDescriptions] = transactions.reduce((acc, curr) => {
+  getEntitiesIdentifiersFromTransactions(transactions: ICreateTransactionRequestDTO[]) {
+    const [sellerNames, productDescriptions, typeIds] = transactions.reduce((acc, curr) => {
       const transactionSellerName = curr.sellerName.toLowerCase().trim()
       acc[0].push(transactionSellerName)
 
       const transactionProductDescription = curr.productDescription.toLowerCase().trim()
       acc[1].push(transactionProductDescription)
+
+      const typeId = curr.typeId
+      acc[2].push(typeId)
       
       return acc
-    }, [[], []] as string[][])
+    }, [[], [], []] as [string[], string[], number[]])
 
     return {
       sellerNames,
-      productDescriptions
+      productDescriptions,
+      typeIds
     }
   }
 
-  enrichDTOwithProductIdAndSellerId(transactionsDTOs: ICreateTransactionRequestDTO[], products: IProduct[], sellers: ISeller[]) {
+  enrichDTOAndValidateEntitiesExistence(transactionsDTOs: ICreateTransactionRequestDTO[], products: IProduct[], sellers: ISeller[], types: ITransactionType[]) {
     const parsedSellers = this.parseSellersByName(sellers)
     const parsedProducts = this.parseProductsByDescription(products)
+    const parsedTypes = this.parseTypesById(types)
     
     const enrichedDTOs: ICreateTransactionDTO[] = transactionsDTOs.map(transactionDTO => {
       const transactionSeller = parsedSellers[transactionDTO.sellerName.toLowerCase().trim()]
@@ -68,6 +76,16 @@ export class CreateManyTransactionsService implements ICreateManyTransactionsSer
           'the operation could not be completed due to an inexistent product description',
           StatusCode.BAD_REQUEST,
           { productDescription: transactionDTO.productDescription.toLowerCase().trim() }
+        )
+      }
+
+      const transactionType = parsedTypes[Number(transactionDTO.typeId)]
+
+      if(!transactionType) {
+        throw new AppError(
+          'the operation could not be completed due to an inexistent type id',
+          StatusCode.BAD_REQUEST,
+          { typeId: transactionDTO.typeId }
         )
       }
 
@@ -105,6 +123,17 @@ export class CreateManyTransactionsService implements ICreateManyTransactionsSer
     }, {})
 
     return parsedSellers
+  }
+
+  parseTypesById(types: ITransactionType[]) {
+    const parsedTypes = types.reduce<{ [id: number]: ITransactionType }>((acc, type) => {
+      const typeId = type.id
+      
+      acc[typeId] = type
+      return acc
+    }, {})
+
+    return parsedTypes
   }
 
 }

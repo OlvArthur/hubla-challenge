@@ -1,14 +1,12 @@
 
-import { getApiClient } from '../services/api'
-import Head from 'next/head'
-
 import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, XIcon, MenuIcon } from '@heroicons/react/outline'
+import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
-import { useAuth } from '@/context/auth'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { BellIcon, XIcon, MenuIcon } from '@heroicons/react/outline'
 
+import { useAuth } from '@/context/auth'
 import { DragAndDropFileUploader } from '../components/DragAndDrop'
 import { HeaderBar } from '../components/HeaderBar'
 
@@ -17,40 +15,7 @@ const navigation = [
   'Reports',
 ]
 
-
-interface TransactionType {
-  id: number,
-  description: string,
-  nature: "INFLOW" | "OUTFLOW",
-  signal: "ADDITION" | "SUBTRACTION"
-}
-
-interface Product {
-  id: number,
-  description: string
-}
-
-interface Seller {
-  id: number,
-  email: string,
-  name: string,
-  isAdmin: boolean,
-  isAffiliatedTo: null | number
-}
-
-interface Transaction {
-    id: number
-    typeId: number
-    productId: number
-    sellerId: number
-    date: Date
-    valueInCents: number
-    transactionType: TransactionType
-    product: Product
-    seller: Seller
-}
-
-export default function FileUploader({ transactions }: { transactions: Transaction[] }) {
+export default function FileUploader() {
   const { seller, signOut } = useAuth()
 
   return (
@@ -207,7 +172,6 @@ export default function FileUploader({ transactions }: { transactions: Transacti
 
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const apiClient = getApiClient(ctx)
   const { 'hubla:token': token } = parseCookies(ctx)
 
   if(!token) {
@@ -219,13 +183,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
 
-  const response = await apiClient.get('/transactions')
-
-  const { data: { transactions } } = response.data
-
   return {
-    props: {
-      transactions
-    }
+    props: {}
   }
 }

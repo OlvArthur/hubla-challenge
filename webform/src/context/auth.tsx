@@ -14,12 +14,13 @@ import { FieldValues } from 'react-hook-form'
 import { getApiClient } from '../services/api'
 
 interface Seller {
-  id: string
+  id: number
   email: string
   name: string
   isAdmin: boolean
   isAffiliatedTo: number | null
   balance: number
+  affiliates: Omit<Seller, 'affiliates'>[]
 }
 
 interface AuthState {

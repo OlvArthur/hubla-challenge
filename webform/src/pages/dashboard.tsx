@@ -1,16 +1,16 @@
 
-import { getApiClient } from '../services/api'
 import Head from 'next/head'
-
 import { Fragment } from 'react'
+
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, XIcon, MenuIcon } from '@heroicons/react/outline'
 import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
-import { useAuth } from '@/context/auth'
 
+import { useAuth } from '@/context/auth'
+import { BalanceTable as BalanceReport } from '@/components/BalanceReports'
+import { getApiClient } from '../services/api'
 import { HeaderBar } from '../components/HeaderBar'
-import { BalanceReport } from '@/components/BalanceReports'
 
 const navigation = [
   'Dashboard',
@@ -43,7 +43,7 @@ interface Transaction {
     typeId: number
     productId: number
     sellerId: number
-    date: Date
+    date: string
     valueInCents: number
     transactionType: TransactionType
     product: Product
@@ -77,7 +77,7 @@ export default function Dashboard({ transactions }: { transactions: Transaction[
                       {navigation.map((item, itemIdx) =>
                         itemIdx === 0 ? (
                           <Fragment key={itemIdx}>
-                            <a href="#" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                            <a href="/" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
                               {item}
                             </a>
                           </Fragment>
@@ -199,7 +199,7 @@ export default function Dashboard({ transactions }: { transactions: Transaction[
         </div>
       </header>
       <main>
-        <BalanceReport />
+        <BalanceReport transactions={transactions} />
       </main>
     </div>
   )

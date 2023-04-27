@@ -1,11 +1,11 @@
 
 import Head from 'next/head'
 import { Fragment } from 'react'
-
+import Link from 'next/link'
+import { parseCookies } from 'nookies'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, XIcon, MenuIcon } from '@heroicons/react/outline'
 import { GetServerSideProps } from 'next'
-import { parseCookies } from 'nookies'
 
 import { useAuth } from '@/context/auth'
 import { BalanceTable as BalanceReport } from '@/components/BalanceReports'
@@ -75,18 +75,18 @@ export default function Dashboard({ transactions }: { transactions: Transaction[
                       {navigation.map((item, itemIdx) =>
                         item.isSelected ? (
                           <Fragment key={itemIdx}>
-                            <a href={item.path} className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                            <Link href={item.path} className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
                               {item.name}
-                            </a>
+                            </Link>
                           </Fragment>
                         ) : (
-                          <a
+                          <Link
                             key={item.path}
                             href={item.path}
                             className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         )
                       )}
                     </div>
@@ -128,13 +128,13 @@ export default function Dashboard({ transactions }: { transactions: Transaction[
                               className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                             >
                               <Menu.Item>
-                                <a
+                                <Link
                                   href="#"
                                   className='block px-4 py-2 text-sm text-gray-700'
                                   onClick={signOut}
                                 >
                                   Sign out
-                                </a>
+                                </Link>
                               </Menu.Item>
                             </Menu.Items>
                           </Transition>
@@ -158,23 +158,22 @@ export default function Dashboard({ transactions }: { transactions: Transaction[
             </div>
 
             <Disclosure.Panel className="md:hidden">
-              {/* <HeaderBar navigatioTabOptions={navigation} /> */}
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {navigation.map((item, itemIdx) =>
                     itemIdx === 0 ? (
                       <Fragment key={item.path}>
-                        <a href={item.path} key={item.path} className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
+                        <Link href={item.path} key={item.path} className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
                           {item.name}
-                        </a>
+                        </Link>
                       </Fragment>
                     ) : (
-                      <a
+                      <Link
                         key={item.path}
                         href={item.path}
                         className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     )
                   )}
                 </div>
@@ -197,12 +196,13 @@ export default function Dashboard({ transactions }: { transactions: Transaction[
                   </button>
                 </div>
                 <div className="mt-3 px-2 space-y-1">
-                  <a
+                  <Link
                     href="#"
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                    onClick={signOut}
                   >
                     Sign out
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Disclosure.Panel>

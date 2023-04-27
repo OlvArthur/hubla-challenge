@@ -10,13 +10,11 @@ import { parseCookies } from 'nookies'
 import { useAuth } from '@/context/auth'
 import { BalanceTable as BalanceReport } from '@/components/BalanceReports'
 import { getApiClient } from '../services/api'
-import { HeaderBar } from '../components/HeaderBar'
 
 const navigation = [
-  'Dashboard',
-  'Reports',
+  {name: 'Dashboard', path: '/dashboard', isSelected: true},
+  {name: 'Upload', path: '/upload', isSelected: false }
 ]
-
 
 interface TransactionType {
   id: number,
@@ -75,19 +73,19 @@ export default function Dashboard({ transactions }: { transactions: Transaction[
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       {navigation.map((item, itemIdx) =>
-                        itemIdx === 0 ? (
+                        item.isSelected ? (
                           <Fragment key={itemIdx}>
-                            <a href="/" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
-                              {item}
+                            <a href={item.path} className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                              {item.name}
                             </a>
                           </Fragment>
                         ) : (
                           <a
-                            key={item}
-                            href="#"
+                            key={item.path}
+                            href={item.path}
                             className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                           >
-                            {item}
+                            {item.name}
                           </a>
                         )
                       )}
@@ -160,7 +158,26 @@ export default function Dashboard({ transactions }: { transactions: Transaction[
             </div>
 
             <Disclosure.Panel className="md:hidden">
-              <HeaderBar navigatioTabOptions={navigation} />
+              {/* <HeaderBar navigatioTabOptions={navigation} /> */}
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                {navigation.map((item, itemIdx) =>
+                    itemIdx === 0 ? (
+                      <Fragment key={item.path}>
+                        <a href={item.path} key={item.path} className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
+                          {item.name}
+                        </a>
+                      </Fragment>
+                    ) : (
+                      <a
+                        key={item.path}
+                        href={item.path}
+                        className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                      >
+                        {item.name}
+                      </a>
+                    )
+                  )}
+                </div>
               <div className="pt-4 pb-3 border-t border-gray-700">
                 <div className="flex items-center px-5">
                   <div className="flex-shrink-0">

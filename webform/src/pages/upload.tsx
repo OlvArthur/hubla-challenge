@@ -8,11 +8,10 @@ import { BellIcon, XIcon, MenuIcon } from '@heroicons/react/outline'
 
 import { useAuth } from '@/context/auth'
 import { DragAndDropFileUploader } from '../components/DragAndDrop'
-import { HeaderBar } from '../components/HeaderBar'
 
 const navigation = [
-  'Dashboard',
-  'Reports',
+  {name: 'Dashboard', path: '/dashboard', isSelected: false},
+  {name: 'Upload', path: '/upload', isSelected: true }
 ]
 
 export default function FileUploader() {
@@ -40,19 +39,19 @@ export default function FileUploader() {
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       {navigation.map((item, itemIdx) =>
-                        itemIdx === 0 ? (
+                        item.isSelected ? (
                           <Fragment key={itemIdx}>
-                            <a href="#" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
-                              {item}
+                            <a href={item.path} className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                              {item.name}
                             </a>
                           </Fragment>
                         ) : (
                           <a
-                            key={item}
-                            href="#"
+                            key={item.path}
+                            href={item.path}
                             className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                           >
-                            {item}
+                            {item.name}
                           </a>
                         )
                       )}
@@ -125,7 +124,25 @@ export default function FileUploader() {
             </div>
 
             <Disclosure.Panel className="md:hidden">
-              <HeaderBar navigatioTabOptions={navigation} />
+              <div className="ml-10 flex items-baseline space-x-4">
+                {navigation.map((item, itemIdx) =>
+                  itemIdx === 0 ? (
+                    <Fragment key={itemIdx}>
+                      <a href={item.path} className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                        {item.name}
+                      </a>
+                    </Fragment>
+                  ) : (
+                    <a
+                      key={item.path}
+                      href={item.path}
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      {item.name}
+                    </a>
+                  )
+                )}
+              </div>
               <div className="pt-4 pb-3 border-t border-gray-700">
                 <div className="flex items-center px-5">
                   <div className="flex-shrink-0">

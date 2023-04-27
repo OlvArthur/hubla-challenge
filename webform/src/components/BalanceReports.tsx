@@ -52,9 +52,7 @@ export function BalanceTable({ transactions }:BalanceTableProps ) {
     return value
   }
   
-  const balancePerAffiliate = transactions.reduce<{ [key: number]: number }>((acc, transaction) => {
-    const transactionBelongsToCreator = transaction.seller.id === seller?.id
-    if(transactionBelongsToCreator) return acc
+  const balancePerSeller = transactions.reduce<{ [key: number]: number }>((acc, transaction) => {
 
     if(!acc[transaction.sellerId]) acc[transaction.sellerId] = 0
 
@@ -68,24 +66,25 @@ export function BalanceTable({ transactions }:BalanceTableProps ) {
     return acc
   }, {})
 
-  const calculateAffiliateBalance = (affiliateId: number) => {
-    const affiliateBalance = balancePerAffiliate[affiliateId]
+  const calculateAndFormatSellerBalance = (sellerId?: number) => {
+    if(!sellerId) return formatValue(0)
+    const balance = balancePerSeller[sellerId]
 
-    return formatValue(affiliateBalance)
+    return formatValue(balance)
   }
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
       <div className="flex flex-col items-center justify-center w-full h-32 bg-gray-200 rounded-3xl mb-8">
         <h1 className="text-3xl font-bold text-gray-700">
-          {seller?.isAdmin ? 'Admin View' : `Your balance: ${formatValue(seller?.balance)}`}
+          {seller?.isAdmin ? 'Admin View' : `Your balance: ${calculateAndFormatSellerBalance(seller?.id)}`}
         </h1>
         {!seller?.isAffiliatedTo && (
           <div className="mt-2">
             {seller?.affiliates.map(affiliate => (
               <div key={affiliate.name}>
                 <span className="text-gray-600">{`${affiliate.name}: `}</span>
-                <span>{calculateAffiliateBalance(affiliate.id)}</span>
+                <span>{calculateAndFormatSellerBalance(affiliate.id)}</span>
               </div>
             ))}
           </div>

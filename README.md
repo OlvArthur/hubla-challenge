@@ -2,12 +2,11 @@
 
 ## 👋 Welcome
 
-This is the work i have done for the selection process technical challenge for joining Hubla. This repository contains the source code for my solution as well as documentation for the project setup and description.
-
+This is the work i have done to showcase some of my skills and my passion for new challenges as well as my capabilities in documentation and time management
 ## Project Description
 
 ### Problem to Solve
-As Hubla works with the creator-affiliate model where a creator can sell their products as well as allow affiliates to also sell this product with a selling fee, there is a natural and urgent need of such platform to allow its customers, the sellers, to upload files with financial transactions information regarding fees and profits from the products sales.
+This project is for a creator-affiliate model where a creator can sell their products as well as allow affiliates to also sell this product with a selling fee, there is a natural and urgent need of such platform to allow its customers, the sellers, to upload files with financial transactions information regarding fees and profits from the products sales.
 
 ### Success Definition
 In order to fully satisfy the customers, the platforms needs to provide the following functionalities:
@@ -134,11 +133,7 @@ Here are the resources and tools used during planning and development
 
   - The password exclusion on routes that return seller info. This is being done in the controller layers as of now, but i am sure there are other ways such as the @Exclude decorator using [class-transformer lib](https://github.com/typestack/class-transformer)
 
-  - For some reason, when the two integration tests files run together, they try to run concurrent applications, which raises the error of the port already being used when the second test suite runs. Turning off threads on vitest or dedicating a port exclusively fo integration testing did not solve, and since all tests pass normaly and running one test at a time does not raise the error, this can be tackled at a later moment.
-
   - The navigation system in the frontend application is repeated across two pages creating duplication of code and making the logic of navigation hardcoded. This can definitely be improved
-
-  - The tests in the frontend. Although it was fairly easy to setup tests with next.js and React, i have been out of touch with frontend work for almost a year now, due to the nature of my current position at work. As a result it was difficult for me to find out not how, but what to test as i don't current have much material on my github on that topic. That is something i would need a few weeks of practice and would definitely ask for help from coworkers to speed up the process
 
   - The User Feedback on the upload page, after an upload and submission, even though the user is redirected, there should be a tooltip or modal to let them know about the upload prior to that
 
